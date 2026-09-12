@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高斯学校竞赛数学</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#4da3ff">
+<link rel="apple-touch-icon" href="../assets/icons/touch.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+<nav class="topnav"><a href="../index.html">🏠 首页</a><span class="sep">›</span><span class="lesson">高斯学校竞赛数学</span></nav>
+<h1>🎓 高斯学校竞赛数学</h1>
+<div class="subtitle">选一本课本</div>
+<div class="grid">
+<a class="tile" href="3b/index.html"><div class="em">📗</div><div class="t">三年级（下）</div><div class="d">第 1-2 讲…持续更新中</div></a><a class="tile" href="#"><div class="em">⏳</div><div class="t">更多年级</div><div class="d">敬请期待</div></a>
+</div>
+<script>
+if ('serviceWorker' in navigator) {
+  var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
+  navigator.serviceWorker.register('../sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (!__hadCtrl || __refreshing) return;
+    __refreshing = true; location.reload();
+  });
+  var __reg = null;
+  navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && __reg) __reg.update();
+  });
+}
+</script>
+</body>
+</html>

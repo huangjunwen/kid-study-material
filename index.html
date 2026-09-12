@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小朋友的数学书</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4da3ff">
+<link rel="apple-touch-icon" href="assets/icons/touch.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+
+<h1>🧮 小朋友的数学书</h1>
+<div class="subtitle">选一个系列开始</div>
+<div class="grid">
+<a class="tile" href="gaosi/index.html"><div class="em">🎓</div><div class="t">高斯学校竞赛数学</div><div class="d">小学 1-6 年级 · 课本例题讲解</div></a>
+</div>
+<script>
+if ('serviceWorker' in navigator) {
+  var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
+  navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (!__hadCtrl || __refreshing) return;
+    __refreshing = true; location.reload();
+  });
+  var __reg = null;
+  navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && __reg) __reg.update();
+  });
+}
+</script>
+</body>
+</html>

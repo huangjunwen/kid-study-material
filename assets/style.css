@@ -1,0 +1,54 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(160deg,#fdf6e3,#e8f4fd);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 14px 50px;color:#2c3e50}
+.topnav{width:100%;max-width:860px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:18px}
+.topnav a{color:#4da3ff;text-decoration:none;font-weight:bold}
+.topnav .lesson{color:#999;font-size:17px}
+h1{font-size:31px;margin:4px 0 4px;text-align:center}
+.subtitle{text-align:center;color:#888;font-size:18px;margin-bottom:6px}
+.card{background:#fff;border-radius:20px;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,.08);margin-top:14px;max-width:860px;width:100%}
+.problem{font-size:20px;color:#555;line-height:1.9;text-align:center}
+.problem b{color:#e67e22}
+.stepbadge{font-size:17px;color:#999;text-align:center;margin-bottom:6px}
+.groups{display:flex;justify-content:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.gchip{font-size:17px;font-weight:bold;padding:6px 16px;border-radius:999px}
+.gchip.ga{background:#ffe9d6;color:#d35400}.gchip.gb{background:#f0e3fb;color:#8e44ad}
+.bars{max-width:620px;margin:0 auto}
+.barrow{margin-bottom:12px}
+.barname{font-size:17px;font-weight:bold;color:#555;margin-bottom:3px}
+.bar{display:flex;height:50px;border-radius:10px;overflow:hidden}
+.seg{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:17px;white-space:nowrap;overflow:hidden;transition:width .6s ease,opacity .6s ease}
+.c-blue{background:#4da3ff}.c-green{background:#47c26b}.c-orange{background:#ffb84d}
+.c-purple{background:#b07ce8}.c-pink{background:#f06292}.c-teal{background:#26b8a5}
+.c-dash{background:repeating-linear-gradient(45deg,#b07ce8,#b07ce8 6px,#d8bcf5 6px,#d8bcf5 12px)}
+.c-cut{background:repeating-linear-gradient(45deg,#ff8a80,#ff8a80 6px,#ffd0ca 6px,#ffd0ca 12px)}
+.equation{text-align:center;font-size:21px;line-height:2;min-height:170px;margin-top:6px}
+.eqline{animation:pop .5s}
+.eqnote{font-size:17px;color:#999;animation:pop .5s}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.answer{display:none;text-align:center;margin-top:8px}
+.answer.on{display:block;animation:pop .6s}
+.answer .abtn{display:inline-block;background:#47c26b;color:#fff;font-size:23px;font-weight:bold;padding:12px 30px;border-radius:999px}
+.controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px}
+button{border:none;border-radius:999px;padding:12px 26px;font-size:20px;font-weight:bold;cursor:pointer;color:#fff;background:#4da3ff;transition:transform .15s,opacity .3s}
+button:hover{transform:scale(1.06)}
+button:disabled{opacity:.35;cursor:default;transform:none}
+#next{background:#47c26b}
+.dots{display:flex;gap:7px}.dot{width:11px;height:11px;border-radius:50%;background:#d5dbe0;transition:background .3s}.dot.on{background:#e67e22}
+details.summary summary{cursor:pointer;font-weight:bold;color:#8e44ad}
+details.summary div{margin-top:10px;color:#555;line-height:1.9;font-size:18px}
+.pagenav{margin-top:18px;display:flex;gap:14px;font-size:18px}
+.pagenav a{color:#4da3ff;text-decoration:none;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;max-width:860px;width:100%;margin-top:14px}
+.tile{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.08);text-decoration:none;color:#2c3e50;transition:transform .15s}
+.tile:hover{transform:translateY(-3px)}
+.tile .em{font-size:39px}
+.tile .t{font-weight:bold;margin:6px 0 4px}
+.tile .d{font-size:16px;color:#888;line-height:1.6}
+.ptoolbar{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.hintbtn{background:#ffb84d;font-size:17px;padding:9px 20px}
+.hintbtn.used{opacity:.55}
+.ansbtn{background:#47c26b;font-size:17px;padding:9px 20px}
+.hintbox{display:none;margin-top:10px;background:#fffbe8;border-radius:10px;padding:10px 14px;color:#666;font-size:18px;line-height:1.8}
+.hintbox.show{display:block;animation:pop .4s}
+.hintbox.final{background:#e9f9ef;color:#1e8a5a;font-weight:bold}
+.topnav .sep{color:#ccc;margin:0 4px}

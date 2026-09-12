@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>例题1 · 小华的书</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="manifest" href="../../../manifest.json">
+<meta name="theme-color" content="#4da3ff">
+<link rel="apple-touch-icon" href="../../../assets/icons/touch.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<h1>📚 例题 1 · 小华的书</h1>
+<div class="problem card">小华所有的数学书、语文书和英语书一共 <b>70</b> 本，其中<b>数学书和语文书</b>的数量之和是<b>英语书</b>的 <b>4 倍</b>，<b>数学书和英语书</b>的数量之和比<b>语文书</b>的 <b>3 倍少 2</b> 本。小华有几本数学书？</div>
+<div class="card">
+  <div class="groups" id="groups"></div>
+  <div class="stepbadge" id="stepbadge"></div>
+  <div id="bars"></div>
+  <div class="equation" id="eq"></div>
+  <div class="answer" id="ans"></div>
+  <div class="controls">
+    <button id="prev">◀ 上一步</button>
+    <div class="dots" id="dots"></div>
+    <button id="next">下一步 ▶</button>
+  </div>
+</div>
+<details class="summary card"><summary>💡 思路总结</summary><div>关键第一步：<b>打包</b>！把「数学＋语文」捆成一队 A，英语是 B 队，先用和倍问题求出英语书；再用第二个条件把数学书换成「语文×3−16」，代入「数＋语 = 56」，式子里就只剩语文一个未知数啦。最后别忘了验算。</div></details>
+<nav class="pagenav"><a href="lesson.html">⬅ 🧠 讲解</a><a href="index.html">🏠 目录</a><a href="ex2.html">👴 例题2 ➡</a></nav>
+<script>window.PAGE = {"groups": [{"name": "A 队 = 数学＋语文", "cls": "ga"}, {"name": "B 队 = 英语", "cls": "gb"}], "bars": [{"name": "A 队（一大格 = 1 份「英语」）", "segs": [{"w": 70, "label": "1份", "cls": "c-blue", "from": 1, "to": 2}, {"w": 70, "label": "1份", "cls": "c-blue", "from": 1, "to": 2}, {"w": 70, "label": "1份", "cls": "c-blue", "from": 1, "to": 2}, {"w": 70, "label": "1份", "cls": "c-blue", "from": 1, "to": 2}], "from": 1, "to": 2}, {"name": "B 队 = 英语", "segs": [{"w": 70, "label": "1份", "cls": "c-orange", "from": 1, "to": 2}], "from": 1, "to": 2}, {"name": "数学＋语文（补 16 后 = 4 个「语文」）", "segs": [{"w": 72, "label": "语", "cls": "c-green", "from": 3, "to": 5}, {"w": 72, "label": "语", "cls": "c-green", "from": 3, "to": 5}, {"w": 72, "label": "语", "cls": "c-green", "from": 3, "to": 5}, {"w": 56, "label": "语−16", "cls": "c-green", "from": 3, "to": 5}, {"w": 16, "label": "补16", "cls": "c-dash", "from": 3, "to": 5}], "from": 3, "to": 5}], "steps": [{"eq": ["三个对象：数学？语文？英语？", "一共 <b>70</b> 本", "先想办法「打包」，把 3 个变成 2 个！"]}, {"eq": ["条件①：数学＋语文 = 英语 × 4", "→ 把「数学＋语文」打包成 A 队", "A = 4 × B（B = 英语）"]}, {"eq": ["和倍问题：A ＋ B = 70，A = 4 × B", "B = 70 ÷ (4＋1) = <b>14</b> 本（英语）", "A = 14 × 4 = 56 本（数学＋语文）"]}, {"eq": ["再用条件②：数学＋英语 = 语文×3 − 2", "数学＋14 = 语文×3 − 2", "所以 数学 = 语文×3 − 16"], "note": "把「数学」换成用「语文」来表示"}, {"eq": ["数学＋语文 = 56", "(语文×3 − 16) ＋ 语文 = 56", "4 × 语文 = 72 → 语文 = <b>18</b> 本"]}, {"eq": ["数学 = 18 × 3 − 16 = <b>38</b> 本"], "note": "验算：38＋14 = 52 = 18×3 − 2 ✓"}, {"eq": ["验证：英语 14，语文 18，数学 38", "一共：38＋18＋14 = 70 ✓", "数＋语 = 56 = 14×4 ✓", "数＋英 = 52 = 18×3−2 ✓"]}], "answer": "小华有 38 本数学书。"};</script>
+<script src="../../../assets/app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
+  navigator.serviceWorker.register('../../../sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (!__hadCtrl || __refreshing) return;
+    __refreshing = true; location.reload();
+  });
+  var __reg = null;
+  navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && __reg) __reg.update();
+  });
+}
+</script>
+</body>
+</html>

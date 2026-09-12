@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三年级（下）</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="manifest" href="../../manifest.json">
+<meta name="theme-color" content="#4da3ff">
+<link rel="apple-touch-icon" href="../../assets/icons/touch.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+<nav class="topnav"><a href="../../index.html">🏠 首页</a><span class="sep">›</span><a href="../index.html">🎓 高斯数学</a><span class="sep">›</span><span class="lesson">三年级（下）</span></nav>
+<h1>📗 三年级（下）</h1>
+<div class="subtitle">选一讲开始学习</div>
+<div class="grid">
+<a class="tile" href="ch02/index.html"><div class="em">🧩</div><div class="t">第 2 讲 · 复杂和差倍</div><div class="d">打包 & 线段图 · 6 道例题 + 练习 + 作业</div></a><a class="tile" href="#"><div class="em">⏳</div><div class="t">第 1 讲</div><div class="d">待制作</div></a>
+</div>
+<script>
+if ('serviceWorker' in navigator) {
+  var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
+  navigator.serviceWorker.register('../../sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (!__hadCtrl || __refreshing) return;
+    __refreshing = true; location.reload();
+  });
+  var __reg = null;
+  navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && __reg) __reg.update();
+  });
+}
+</script>
+</body>
+</html>

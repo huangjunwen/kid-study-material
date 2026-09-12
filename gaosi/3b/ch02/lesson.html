@@ -1,0 +1,232 @@
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>讲解 · 复杂和差倍</title>
+<link rel="manifest" href="../../../manifest.json">
+<meta name="theme-color" content="#4da3ff">
+<link rel="apple-touch-icon" href="../../../assets/icons/touch.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="../../../assets/style.css">
+<style>
+  .scene{display:none;margin-top:6px}
+  .scene.on{display:block;animation:pop .5s}
+  .story{background:#fffbe8;border-radius:12px;padding:10px 14px;color:#666;font-size:20px;line-height:1.8;text-align:center;margin-bottom:14px}
+  .story b{color:#e67e22}
+  .eq{margin-top:12px}
+
+  .seg2{height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:17px;border-radius:0;white-space:nowrap;overflow:hidden;width:0;transition:width .7s ease}
+  .bar2{display:flex;height:38px;border-radius:9px;overflow:hidden;width:100%}
+  .brow{width:620px;max-width:100%;margin:0 auto}
+  .rowname{font-size:17px;font-weight:bold;color:#555;margin:10px auto 3px;text-align:left;width:620px;max-width:100%}
+  .eq{text-align:center;margin-top:12px}
+  .scene.on .seg2{width:var(--w)}
+  .cc-blue{background:#4da3ff}.cc-green{background:#47c26b}.cc-orange{background:#ffb84d}
+  .cc-purple{background:#b07ce8}.cc-teal{background:#26b8a5}.cc-pink{background:#f06292}
+  .cc-dash{background:repeating-linear-gradient(45deg,#b07ce8,#b07ce8 6px,#d8bcf5 6px,#d8bcf5 12px)}
+  .cc-cut{background:repeating-linear-gradient(45deg,#ff8a80,#ff8a80 6px,#ffd0ca 6px,#ffd0ca 12px)}
+
+  .piles{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin:10px 0 6px}
+  .packzone{display:flex;gap:26px;padding:10px;border:3px dashed transparent;border-radius:18px;transition:all .7s ease;position:relative}
+  .pile{background:#f6f8fa;border-radius:14px;padding:10px 14px;text-align:center;transition:transform .7s ease}
+  .pile .face{font-size:39px}
+  .pile .nm{font-size:18px;font-weight:bold;color:#333;margin-top:2px}
+  .pile .unk{font-size:17px;color:#e67e22;font-weight:bold}
+  .scene.s3.on .packzone{border-color:#e67e22;background:#fff7ec}
+  .ptag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#e67e22;color:#fff;font-size:16px;font-weight:bold;border-radius:999px;padding:2px 12px;opacity:0;transition:opacity .6s}
+  .scene.s3.on .ptag{opacity:1}
+  .btag{font-size:16px;font-weight:bold;color:#8e44ad;background:#f0e3fb;border-radius:999px;padding:2px 12px;opacity:0;transition:opacity .6s;margin-left:10px}
+  .scene.s3.on .btag{opacity:1}
+
+  .chain{display:flex;justify-content:center;align-items:center;gap:6px;margin:12px 0;flex-wrap:wrap}
+  .clink{background:#f6f8fa;border-radius:14px;padding:10px 14px;text-align:center;font-size:18px;font-weight:bold;color:#333}
+  .clink .face{font-size:34px}
+  .clink small{display:block;color:#888;font-weight:normal;font-size:16px;margin-top:2px}
+  .carrow{font-size:26px;color:#e67e22;font-weight:bold;text-align:center}
+  .carrow small{display:block;font-size:14px;color:#999}
+
+  .callout{display:flex;justify-content:center;margin:8px 0}
+  .callout span{background:#e8f7ef;color:#1e8a5a;font-weight:bold;font-size:18px;border-radius:999px;padding:6px 16px}
+
+  .flow{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px}
+  .fbox{background:#fff;border:2px solid #4da3ff;color:#2c3e50;font-size:18px;font-weight:bold;border-radius:12px;padding:8px 16px;text-align:center;line-height:1.6;animation:pop .5s both}
+  .fbox small{display:block;font-weight:normal;color:#888;font-size:16px}
+  .fbox.green{border-color:#47c26b;background:#f2fbf5}
+  .fbox.purple{border-color:#b07ce8;background:#faf6fe}
+  .farrow{color:#e67e22;font-size:23px;font-weight:bold;animation:pop .5s both}
+  .fbranches{display:flex;gap:14px;justify-content:center}
+</style>
+</head>
+<body data-step="5">
+<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<h1>🧠 讲解 · 复杂和差倍</h1>
+<div class="problem card">题目里的「东西」变多了怎么办？🤔<br>别怕！今天学两招：<b>「打包」</b>和<b>「线段图」</b></div>
+
+<div class="card">
+  <div class="stepbadge" id="stepbadge">第 6 / 7 步</div>
+
+  <div class="scene s0">
+    <div class="story">🍬 <b>热身1 · 和差问题</b>：哥哥和妹妹一共有 <b>10</b> 颗糖，哥哥比妹妹<b>多 2</b> 颗，两人各有几颗？</div>
+    <div class="brow">
+      <div class="rowname">哥哥 👦</div>
+      <div class="bar2"><div class="seg2 cc-blue" style="--w:156px">6 颗</div></div>
+      <div class="rowname">妹妹 👧</div>
+      <div class="bar2"><div class="seg2 cc-pink" style="--w:104px">妹妹</div><div class="seg2 cc-dash" style="--w:52px">补2</div></div>
+    </div>
+    <div class="eq">
+      <div class="eqline">给妹妹「补上 2 颗」→ 两人一样多！</div>
+      <div class="eqline">10 ＋ 2 = 12 → 12 ÷ 2 = <b>6</b>（哥哥），妹妹 = 6 − 2 = <b>4</b></div>
+      <div class="eqnote">口诀：(和 ＋ 差) ÷ 2 = 大数</div>
+    </div>
+  </div>
+
+  <div class="scene s1">
+    <div class="story">🐟 <b>热身2 · 和倍问题</b>：猫妈妈钓的鱼是小猫的 <b>4 倍</b>，两人一共钓了 <b>10</b> 条，各钓几条？</div>
+    <div class="brow">
+      <div class="rowname">猫妈妈 🐱 = 4 个「小猫」</div>
+      <div class="bar2"><div class="seg2 cc-purple" style="--w:260px">4 份</div></div>
+      <div class="rowname">小猫 🐱🐱🐱🐱</div>
+      <div class="bar2"><div class="seg2 cc-teal" style="--w:65px">1份</div></div>
+    </div>
+    <div class="eq">
+      <div class="eqline">一共是 4 ＋ 1 = <b>5 份</b> → 1 份 = 10 ÷ 5 = <b>2</b> 条</div>
+      <div class="eqline">小猫 2 条，猫妈妈 2 × 4 = <b>8</b> 条</div>
+      <div class="eqnote">口诀：总和 ÷ (倍数 ＋ 1) = 1 份</div>
+    </div>
+  </div>
+
+  <div class="scene s2">
+    <div class="story">📚 <b>新问题来了！</b>小华的书架上有<b>数学书、语文书、英语书</b>三种书，一共 <b>70</b> 本……<br>咦？有 <b>3 个</b>东西，老方法还行吗？</div>
+    <div class="piles">
+      <div class="pile"><div class="face">📚📚</div><div class="nm">数学书</div><div class="unk">？本</div></div>
+      <div class="pile"><div class="face">📕📕</div><div class="nm">语文书</div><div class="unk">？本</div></div>
+      <div class="pile"><div class="face">📘📘</div><div class="nm">英语书</div><div class="unk">？本</div></div>
+    </div>
+    <div class="eq"><div class="eqline">3 个「？」，算不动……怎么办？👉 下一招！</div></div>
+  </div>
+
+  <div class="scene s3">
+    <div class="story">🪄 <b>新本领①「打包」</b>：把两个好朋友<b>手拉手捆成一捆</b>！<br>数学书 ＋ 语文书 → 打进一个袋子里</div>
+    <div class="piles">
+      <div class="packzone">
+        <div class="ptag">A 队 = 数学＋语文</div>
+        <div class="pile"><div class="face">📚📚</div><div class="nm">数学书</div><div class="unk">？本</div></div>
+        <div class="pile"><div class="face">📕📕</div><div class="nm">语文书</div><div class="unk">？本</div></div>
+      </div>
+      <div class="pile"><div class="face">📘📘</div><div class="nm">英语书</div><div class="unk">？本</div><div class="btag">B 队</div></div>
+    </div>
+    <div class="eq">
+      <div class="eqline">看！现在只剩 <b>2 堆</b>啦：A 队 🧡 和 B 队 💜</div>
+      <div class="eqline">题目条件①说：A 队 = B 队 × 4，A ＋ B = 70</div>
+      <div class="eqline">这不就是我们刚复习过的<b>和倍问题</b>吗！</div>
+      <div class="eqnote">「打包」= 把两个东西捆成一个，变回两个对象的问题</div>
+    </div>
+  </div>
+
+  <div class="scene s4">
+    <div class="story">🎤 <b>那什么时候不能打包呢？</b><br>好声音报名：上海比北京的 <b>3 倍多 20</b>，湖南又比上海的 <b>2 倍少 80</b></div>
+    <div class="chain">
+      <div class="clink"><div class="face">🏙️ 北京</div><small>？人</small></div>
+      <div class="carrow">→<small>3倍＋20</small></div>
+      <div class="clink"><div class="face">🎤 上海</div><small>？人</small></div>
+      <div class="carrow">→<small>2倍−80</small></div>
+      <div class="clink"><div class="face">🎵 湖南</div><small>？人</small></div>
+    </div>
+    <div class="eq">
+      <div class="eqline">像<b>接力赛</b>：湖南靠上海算，上海又靠北京算</div>
+      <div class="eqline">谁和谁打包都不合适……怎么办？👉 下一招！</div>
+    </div>
+  </div>
+
+  <div class="scene s5 on">
+    <div class="story">📏 <b>新本领②「线段图」</b>：把<b>最小的</b>北京当成一把<b>小尺子</b>（1 份），其他的都用尺子来量！</div>
+    <div class="callout"><span>📏 北京 = 1 份（小尺子）</span></div>
+    <div class="brow">
+      <div class="rowname">北京 🏙️</div>
+      <div class="bar2"><div class="seg2 cc-blue" style="--w:78px">1份</div></div>
+      <div class="rowname">上海 🎤 = 3 份 ＋ 20</div>
+      <div class="bar2"><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-dash" style="--w:39px">＋20</div></div>
+      <div class="rowname">湖南 🎵 = 6 份 − 40</div>
+      <div class="bar2"><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-cut" style="--w:78px">−40</div></div>
+    </div>
+    <div class="eq">
+      <div class="eqline">全部变成「几份 ＋ 几个」→ 加起来列算式就行啦！</div>
+      <div class="eqnote">例题3、例题4 就是这么做的，去看看吧！</div>
+    </div>
+  </div>
+
+  <div class="scene s6">
+    <div class="story">🗺️ <b>解题小地图</b>（以后拿到题就按这个走）</div>
+    <div class="flow">
+      <div class="fbox">拿到题目，先数一数：有几个「东西」？</div>
+      <div class="farrow">⬇️</div>
+      <div class="fbox">只有 2 个？<small>直接用和差 / 和倍老办法</small></div>
+      <div class="farrow">⬇️</div>
+      <div class="fbox">3 个以上？先问：能把两个捆成一捆吗？</div>
+      <div class="farrow">⬇️</div>
+      <div class="fbranches">
+        <div class="fbox green">能！→ 打包 🪄<small>捆成 A、B 两队</small></div>
+        <div class="fbox purple">不能 → 线段图 📏<small>找最小的当 1 份</small></div>
+      </div>
+      <div class="farrow">⬇️</div>
+      <div class="fbox">列算式 → 算答案 → 验算 ✅</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="prev">◀ 上一步</button>
+    <div class="dots" id="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+    <button id="next">下一步 ▶</button>
+  </div>
+</div>
+
+<details class="summary card"><summary>💡 讲给爸爸妈妈听</summary><div>1️⃣ <b>打包</b>：题目里有 3 个、4 个东西时，把关系最亲密的两个捆成一队，变回「两个队」的和差倍问题（例题1、例题2）。<br>2️⃣ <b>线段图</b>：如果谁都是「看别人」的接力关系，不能打包，就把最小的量当「1 份」小尺子，其他都量成「几份＋几个」（例题3、例题4）。<br>最后：列完算式记得把答案代回去验算哦！</div></details>
+<nav class="pagenav"><a href="index.html">🏠 目录</a><a href="ex1.html">📚 例题1 ➡</a></nav>
+
+<script>
+(function(){
+  var N = 7, S = 0;
+  var scenes = document.querySelectorAll('.scene');
+  var dotsEl = document.getElementById('dots');
+  for (var i = 0; i < N; i++) {
+    var d = document.createElement('div'); d.className = 'dot'; dotsEl.appendChild(d);
+  }
+  var dots = dotsEl.children;
+  function render(){
+    document.body.setAttribute('data-step', S);
+    document.getElementById('stepbadge').textContent = '第 ' + (S + 1) + ' / ' + N + ' 步';
+    for (var i = 0; i < N; i++) dots[i].classList.toggle('on', i <= S);
+    for (var j = 0; j < scenes.length; j++) scenes[j].classList.toggle('on', j === S);
+    document.getElementById('prev').disabled = S === 0;
+    document.getElementById('next').disabled = S === N - 1;
+    document.getElementById('next').textContent = S === N - 1 ? '完成 ✓' : '下一步 ▶';
+  }
+  document.getElementById('next').onclick = function(){ if (S < N - 1) { S++; render(); } };
+  document.getElementById('prev').onclick = function(){ if (S > 0) { S--; render(); } };
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' && S < N - 1) { S++; render(); }
+    if (e.key === 'ArrowLeft' && S > 0) { S--; render(); }
+  });
+  render();
+})();
+</script>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
+  navigator.serviceWorker.register('../../../sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (!__hadCtrl || __refreshing) return;
+    __refreshing = true; location.reload();
+  });
+  var __reg = null;
+  navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && __reg) __reg.update();
+  });
+}
+</script>
+</body>
+</html>
