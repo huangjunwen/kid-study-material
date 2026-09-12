@@ -29,6 +29,17 @@ h1{font-size:31px;margin:4px 0 4px;text-align:center}
 .answer.on{display:block;animation:pop .6s}
 .answer .abtn{display:inline-block;background:#47c26b;color:#fff;font-size:23px;font-weight:bold;padding:12px 30px;border-radius:999px}
 .controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px}
+/* 步骤页布局：窄屏按钮在卡片下方并排，宽屏(iPad横屏)移到内容左右两侧 */
+.stagewrap{display:grid;grid-template-areas:"card card" "l r";grid-template-columns:1fr 1fr;gap:12px;max-width:860px;width:100%;margin-top:14px;align-items:center}
+.stagewrap .stage{grid-area:card;margin-top:0}
+.sidebtn{display:flex;justify-content:center}
+.sidebtn.l{grid-area:l}.sidebtn.r{grid-area:r}
+@media (min-width:1000px){
+  .topnav,.grid{max-width:1080px}
+  h1{font-size:34px}
+  .stagewrap{max-width:1400px;grid-template-areas:"l card r";grid-template-columns:118px minmax(0,920px) 118px;justify-content:center;column-gap:20px;row-gap:0}
+  .sidebtn button{width:100%;padding:16px 8px;font-size:18px;white-space:nowrap}
+}
 button{border:none;border-radius:999px;padding:12px 26px;font-size:20px;font-weight:bold;cursor:pointer;color:#fff;background:#4da3ff;transition:transform .15s,opacity .3s}
 button:hover{transform:scale(1.06)}
 button:disabled{opacity:.35;cursor:default;transform:none}

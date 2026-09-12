@@ -15,17 +15,19 @@
 <nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
 <h1>🎤 例题 3 · 好声音报名</h1>
 <div class="problem card">中国好声音比赛开始报名，一共上海、北京和湖南 3 个赛区，总报名人数为 <b>600</b> 人。其中<b>湖南</b>的报名人数比<b>上海</b>的 <b>2 倍少 80</b> 人，而<b>上海</b>的报名人数比<b>北京</b>的 <b>3 倍多 20</b> 人。问 3 个赛区各有多少人报名？</div>
-<div class="card">
+<div class="stagewrap">
+<div class="sidebtn l"><button id="prev">◀ 上一步</button></div>
+<div class="card stage">
   <div class="groups" id="groups"></div>
   <div class="stepbadge" id="stepbadge"></div>
   <div id="bars"></div>
   <div class="equation" id="eq"></div>
   <div class="answer" id="ans"></div>
   <div class="controls">
-    <button id="prev">◀ 上一步</button>
     <div class="dots" id="dots"></div>
-    <button id="next">下一步 ▶</button>
   </div>
+</div>
+<div class="sidebtn r"><button id="next">下一步 ▶</button></div>
 </div>
 <details class="summary card"><summary>💡 思路总结</summary><div>三个赛区是「链条」关系（湖南→上海→北京），不能打包。这时用<b>线段图 / 份数</b>：以最少的北京为 1 份，上海 = 3份＋20，湖南 = 6份−40，合计 10份−20 = 600 → 1份 = 62，再倒推求出每个赛区。</div></details>
 <nav class="pagenav"><a href="ex2.html">⬅ 👴 例题2</a><a href="index.html">🏠 目录</a><a href="ex4.html">🍎 例题4 ➡</a></nav>

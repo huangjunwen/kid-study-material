@@ -1,7 +1,7 @@
-/* 小朋友的数学书 - Service Worker
+/* 猪小嘻的学习资料 - Service Worker
  * 更新内容时：把 VERSION 改成新值（如 v2），部署后客户端会自动换新版并刷新 */
-const VERSION = 'v4';
-const CACHE = 'mathbook-' + VERSION;
+const VERSION = 'v5';
+const CACHE = 'kidstudy-' + VERSION;
 
 const PRECACHE = [
   './',

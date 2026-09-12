@@ -15,17 +15,19 @@
 <nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
 <h1>📚 例题 1 · 小华的书</h1>
 <div class="problem card">小华所有的数学书、语文书和英语书一共 <b>70</b> 本，其中<b>数学书和语文书</b>的数量之和是<b>英语书</b>的 <b>4 倍</b>，<b>数学书和英语书</b>的数量之和比<b>语文书</b>的 <b>3 倍少 2</b> 本。小华有几本数学书？</div>
-<div class="card">
+<div class="stagewrap">
+<div class="sidebtn l"><button id="prev">◀ 上一步</button></div>
+<div class="card stage">
   <div class="groups" id="groups"></div>
   <div class="stepbadge" id="stepbadge"></div>
   <div id="bars"></div>
   <div class="equation" id="eq"></div>
   <div class="answer" id="ans"></div>
   <div class="controls">
-    <button id="prev">◀ 上一步</button>
     <div class="dots" id="dots"></div>
-    <button id="next">下一步 ▶</button>
   </div>
+</div>
+<div class="sidebtn r"><button id="next">下一步 ▶</button></div>
 </div>
 <details class="summary card"><summary>💡 思路总结</summary><div>关键第一步：<b>打包</b>！把「数学＋语文」捆成一队 A，英语是 B 队，先用和倍问题求出英语书；再用第二个条件把数学书换成「语文×3−16」，代入「数＋语 = 56」，式子里就只剩语文一个未知数啦。最后别忘了验算。</div></details>
 <nav class="pagenav"><a href="lesson.html">⬅ 🧠 讲解</a><a href="index.html">🏠 目录</a><a href="ex2.html">👴 例题2 ➡</a></nav>

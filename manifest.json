@@ -1,12 +1,12 @@
 {
-  "name": "小朋友的数学书",
-  "short_name": "数学书",
-  "description": "小学数学课本的可视化讲解、例题动画与练习提示",
+  "name": "猪小嘻的学习资料",
+  "short_name": "猪小嘻",
+  "description": "猪小嘻的学习资料：可视化讲解、例题动画与练习提示",
   "lang": "zh-CN",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#fdf6e3",
   "theme_color": "#4da3ff",
   "icons": [
