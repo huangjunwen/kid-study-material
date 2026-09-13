@@ -43,6 +43,8 @@
       var rowVis = S >= rf && S <= rt;
       r.wrap.style.display = rowVis ? '' : 'none';
       if (!rowVis) return;
+      function isMark(seg){ return /c-dash|c-cut/.test(seg.cls); }
+      var plainThin = r.segs.some(function(o){ return !isMark(o.seg) && o.seg.w < 42; });
       r.segs.forEach(function(o){
         var seg = o.seg;
         var f = seg.from || 0, t = (seg.to == null ? 1e9 : seg.to);
@@ -51,7 +53,16 @@
         o.el.style.opacity = vis ? 1 : 0;
         var txt = seg.label || '';
         if (seg.alt && S >= seg.alt.from) txt = seg.alt.text;
-        o.el.textContent = vis ? txt : '';
+        var sink = isMark(seg) || plainThin;
+        if (vis && txt && sink) {
+          o.el.classList.add('thin');
+          o.el.innerHTML = '<span class="slbl">' + txt + '</span>';
+          var bg = getComputedStyle(o.el).backgroundColor;
+          o.el.firstChild.style.color = (bg === 'rgb(255, 255, 255)' || bg === 'rgba(0, 0, 0, 0)') ? '#e53935' : bg;
+        } else {
+          o.el.classList.remove('thin');
+          o.el.textContent = vis ? txt : '';
+        }
       });
     });
     var ans = document.getElementById('ans');

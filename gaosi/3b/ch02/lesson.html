@@ -15,16 +15,19 @@
   .story b{color:#e67e22}
   .eq{margin-top:12px}
 
-  .seg2{height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:17px;border-radius:0;white-space:nowrap;overflow:hidden;width:0;transition:width .7s ease}
-  .bar2{display:flex;height:38px;border-radius:9px;overflow:hidden;width:100%}
+  .seg2{position:relative;height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:17px;border-radius:0;white-space:nowrap;overflow:hidden;width:0;transition:width .7s ease}
+  .bar2{display:flex;gap:3px;height:38px;border-radius:9px;width:100%}
+  .bar2 .seg2:first-child{border-radius:9px 0 0 9px}.bar2 .seg2:last-child{border-radius:0 9px 9px 0}
+  .seg2.small{color:transparent;overflow:visible}
+  .seg2.small::after{content:attr(data-l);position:absolute;top:calc(100% + 3px);left:50%;transform:translateX(-50%);font-size:13px;font-weight:bold;color:var(--lc,#777);white-space:nowrap}
   .brow{width:620px;max-width:100%;margin:0 auto}
-  .rowname{font-size:17px;font-weight:bold;color:#555;margin:10px auto 3px;text-align:left;width:620px;max-width:100%}
+  .rowname{font-size:17px;font-weight:bold;color:#555;margin:14px auto 3px;text-align:left;width:620px;max-width:100%}
   .eq{text-align:center;margin-top:12px}
   .scene.on .seg2{width:var(--w)}
   .cc-blue{background:#4da3ff}.cc-green{background:#47c26b}.cc-orange{background:#ffb84d}
   .cc-purple{background:#b07ce8}.cc-teal{background:#26b8a5}.cc-pink{background:#f06292}
-  .cc-dash{background:repeating-linear-gradient(45deg,#b07ce8,#b07ce8 6px,#d8bcf5 6px,#d8bcf5 12px)}
-  .cc-cut{background:repeating-linear-gradient(45deg,#ff8a80,#ff8a80 6px,#ffd0ca 6px,#ffd0ca 12px)}
+  .cc-dash{background:#b07ce8;border:none}
+  .cc-cut{background:#fff;border:2px dashed #e53935;margin-left:-3px}
 
   .piles{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin:10px 0 6px}
   .packzone{display:flex;gap:26px;padding:10px;border:3px dashed transparent;border-radius:18px;transition:all .7s ease;position:relative}
@@ -72,7 +75,7 @@
       <div class="rowname">哥哥 👦</div>
       <div class="bar2"><div class="seg2 cc-blue" style="--w:156px">6 颗</div></div>
       <div class="rowname">妹妹 👧</div>
-      <div class="bar2"><div class="seg2 cc-pink" style="--w:104px">妹妹</div><div class="seg2 cc-dash" style="--w:52px">补2</div></div>
+      <div class="bar2"><div class="seg2 cc-pink" style="--w:104px">妹妹</div><div class="seg2 cc-pink" style="--w:52px">补2</div></div>
     </div>
     <div class="eq">
       <div class="eqline">给妹妹「补上 2 颗」→ 两人一样多！</div>
@@ -146,9 +149,9 @@
       <div class="rowname">北京 🏙️</div>
       <div class="bar2"><div class="seg2 cc-blue" style="--w:78px">1份</div></div>
       <div class="rowname">上海 🎤 = 3 份 ＋ 20</div>
-      <div class="bar2"><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-dash" style="--w:39px">＋20</div></div>
+      <div class="bar2" style="--lc:#8e44ad"><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple" style="--w:78px">份</div><div class="seg2 cc-purple small" style="--w:20px" data-l="＋20"></div></div>
       <div class="rowname">湖南 🎵 = 6 份 − 40</div>
-      <div class="bar2"><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-orange" style="--w:78px">份</div><div class="seg2 cc-cut" style="--w:78px">−40</div></div>
+      <div class="bar2" style="margin-bottom:30px;--lc:#fb8c00"><div class="seg2 cc-orange small" style="--w:78px" data-l="份"></div><div class="seg2 cc-orange small" style="--w:78px" data-l="份"></div><div class="seg2 cc-orange small" style="--w:78px" data-l="份"></div><div class="seg2 cc-orange small" style="--w:78px" data-l="份"></div><div class="seg2 cc-orange small" style="--w:78px" data-l="份"></div><div class="seg2 cc-orange small" style="--w:38px" data-l="份"></div><div class="seg2 cc-cut small" style="--w:40px;--lc:#e53935" data-l="−40"></div></div>
     </div>
     <div class="eq">
       <div class="eqline">全部变成「几份 ＋ 几个」→ 加起来列算式就行啦！</div>
