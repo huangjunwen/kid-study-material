@@ -12,11 +12,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<div class="crumbbox"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="cur">🧩 第二讲 · 复杂和差倍</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>🎫 例题 5 · 积分卡</h1>
 <div class="problem card">小高和卡莉娅各有一些积分卡。小高的积分比卡莉娅的 <b>3 倍多 3</b> 分，而卡莉娅的积分比小高的 <b>3 倍少 73</b> 分。请问：两人一共多少分？</div>
 <div class="stagewrap">
-<div class="sidebtn l"><button id="prev">◀ 上一步</button></div>
 <div class="card stage">
   <div class="groups" id="groups"></div>
   <div class="stepbadge" id="stepbadge"></div>
@@ -24,16 +23,26 @@
   <div class="equation" id="eq"></div>
   <div class="answer" id="ans"></div>
   <div class="controls">
+    <button id="prev"><span class="btx">上一步</span><span class="bic">◀</span></button>
     <div class="dots" id="dots"></div>
+    <button id="next"><span class="btx">下一步</span><span class="bic">▶</span></button>
   </div>
 </div>
-<div class="sidebtn r"><button id="next">下一步 ▶</button></div>
 </div>
 <details class="summary card"><summary>💡 思路总结</summary><div>两个对象<b>互为倍数</b>：先由第一句得「高 = 3卡＋3」，把第二句「卡 = 3高−73」里的高换成 (3卡＋3)，得 3高 = 9卡＋9；又 3高 = 卡＋73，所以 卡＋73 = 9卡＋9 → 卡 = 8，高 = 27，一共 <b>35</b> 分。</div></details>
-<nav class="pagenav"><a href="ex4.html">⬅ 🍎 例题4</a><a href="index.html">🏠 目录</a><a href="ex6.html">🍬 例题6 ➡</a></nav>
+<div class="pglinks"><a href="ex4.html">⬅ 🍎 例题4</a><a href="index.html">🏠 目录</a><a href="ex6.html">🍬 例题6 ➡</a></div>
 <script>window.PAGE = {"bars": [{"name": "小高 = 3 个「卡」＋ 3", "segs": [{"w": 50, "label": "卡", "cls": "c-pink", "from": 1}, {"w": 50, "label": "卡", "cls": "c-pink", "from": 1}, {"w": 50, "label": "卡", "cls": "c-pink", "from": 1}, {"w": 18, "label": "＋3", "cls": "c-orange", "from": 1}], "from": 0}, {"name": "3 个「小高」比卡多 73", "segs": [{"w": 150, "label": "高", "cls": "c-blue", "from": 2}, {"w": 150, "label": "高", "cls": "c-blue", "from": 2}, {"w": 150, "label": "高", "cls": "c-blue", "from": 2}, {"w": 45, "label": "多73", "cls": "c-cut", "from": 2}], "from": 0}], "steps": [{"eq": ["小高 = 卡莉娅×3 ＋ 3 ……①", "卡莉娅 = 小高×3 − 73 ……②", "两人互为倍数，怎么办？"]}, {"eq": ["先画第一句：小高 = 3 个「卡莉娅」＋ 3"]}, {"eq": ["再画第二句：3 个「小高」− 73 = 卡莉娅", "也就是 <b>3 个小高 = 卡 ＋ 73</b>"]}, {"eq": ["把①代入：3 个小高 = 3×(3卡＋3) = 9卡＋9", "所以 卡＋73 = 9卡＋9", "8 × 卡 = 64 → 卡 = <b>8</b> 分"]}, {"eq": ["小高 = 8×3 ＋ 3 = <b>27</b> 分", "两人一共 8 ＋ 27 = <b>35</b> 分"]}, {"eq": ["验证：27 = 8×3＋3 ✓", "8 = 27×3 − 73 ✓"]}], "answer": "两人一共 35 分。"};</script>
 <script src="../../../assets/app.js"></script>
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('../../../sw.js');
@@ -43,6 +52,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();

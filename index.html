@@ -12,13 +12,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-
+<div class="crumbbox"><span class="cur">🐷 首页</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>🐷 猪小嘻的学习资料</h1>
 <div class="subtitle">选一个系列开始</div>
 <div class="grid">
 <a class="tile" href="gaosi/index.html"><div class="em">🎓</div><div class="t">高斯学校竞赛数学</div><div class="d">小学 1-6 年级 · 课本例题讲解</div></a>
 </div>
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('sw.js');
@@ -28,6 +37,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();

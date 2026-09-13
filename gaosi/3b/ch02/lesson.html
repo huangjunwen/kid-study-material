@@ -58,12 +58,11 @@
 </style>
 </head>
 <body data-step="0">
-<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<div class="crumbbox"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="cur">🧩 第二讲 · 复杂和差倍</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>🧠 讲解 · 复杂和差倍</h1>
 <div class="problem card">题目里的「东西」变多了怎么办？🤔<br>别怕！今天学两招：<b>「打包」</b>和<b>「线段图」</b></div>
 
 <div class="stagewrap">
-<div class="sidebtn l"><button id="prev">◀ 上一步</button></div>
 <div class="card stage">
   <div class="stepbadge" id="stepbadge">第 6 / 7 步</div>
 
@@ -176,14 +175,15 @@
   </div>
 
   <div class="controls">
+    <button id="prev"><span class="btx">上一步</span><span class="bic">◀</span></button>
     <div class="dots" id="dots"></div>
+    <button id="next"><span class="btx">下一步</span><span class="bic">▶</span></button>
   </div>
 </div>
-<div class="sidebtn r"><button id="next">下一步 ▶</button></div>
 </div>
 
 <details class="summary card"><summary>💡 讲给爸爸妈妈听</summary><div>1️⃣ <b>打包</b>：题目里有 3 个、4 个东西时，把关系最亲密的两个捆成一队，变回「两个队」的和差倍问题（例题1、例题2）。<br>2️⃣ <b>线段图</b>：如果谁都是「看别人」的接力关系，不能打包，就把最小的量当「1 份」小尺子，其他都量成「几份＋几个」（例题3、例题4）。<br>最后：列完算式记得把答案代回去验算哦！</div></details>
-<nav class="pagenav"><a href="index.html">🏠 目录</a><a href="ex1.html">📚 例题1 ➡</a></nav>
+<div class="pglinks"><a href="index.html">🏠 目录</a><a href="ex1.html">📚 例题1 ➡</a></div>
 
 <script>
 (function(){
@@ -201,7 +201,9 @@
     for (var j = 0; j < scenes.length; j++) scenes[j].classList.toggle('on', j === S);
     document.getElementById('prev').disabled = S === 0;
     document.getElementById('next').disabled = S === N - 1;
-    document.getElementById('next').textContent = S === N - 1 ? '完成 ✓' : '下一步 ▶';
+    document.getElementById('next').innerHTML = S === N - 1
+      ? '<span class="btx">完成</span><span class="bic">✓</span>'
+      : '<span class="btx">下一步</span><span class="bic">▶</span>';
   }
   document.getElementById('next').onclick = function(){ if (S < N - 1) { S++; render(); } };
   document.getElementById('prev').onclick = function(){ if (S > 0) { S--; render(); } };
@@ -215,6 +217,15 @@
 
 
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('../../../sw.js');
@@ -224,6 +235,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();

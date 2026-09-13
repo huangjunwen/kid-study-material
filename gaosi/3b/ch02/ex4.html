@@ -12,11 +12,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<div class="crumbbox"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="cur">🧩 第二讲 · 复杂和差倍</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>🍎 例题 4 · 四箱苹果</h1>
 <div class="problem card">有甲、乙、丙、丁四箱苹果，甲箱苹果数是乙的 <b>2 倍</b>，乙箱苹果数比丙丁两箱和的 <b>3 倍多 4</b> 个，丙箱苹果数是丁的 <b>2 倍</b>。四箱苹果一共 <b>132</b> 个。丁箱有多少个苹果？</div>
 <div class="stagewrap">
-<div class="sidebtn l"><button id="prev">◀ 上一步</button></div>
 <div class="card stage">
   <div class="groups" id="groups"></div>
   <div class="stepbadge" id="stepbadge"></div>
@@ -24,16 +23,26 @@
   <div class="equation" id="eq"></div>
   <div class="answer" id="ans"></div>
   <div class="controls">
+    <button id="prev"><span class="btx">上一步</span><span class="bic">◀</span></button>
     <div class="dots" id="dots"></div>
+    <button id="next"><span class="btx">下一步</span><span class="bic">▶</span></button>
   </div>
 </div>
-<div class="sidebtn r"><button id="next">下一步 ▶</button></div>
 </div>
 <details class="summary card"><summary>💡 思路总结</summary><div>四个对象但一环扣一环：从最小的<b>丁</b>出发设为 1 份 → 丙 = 2份 → 丙＋丁 = 3份 → 乙 = 9份＋4 → 甲 = 18份＋8 → 合计 30份＋12 = 132 → 1份 = 4。像剥洋葱一样层层换算就够了。</div></details>
-<nav class="pagenav"><a href="ex3.html">⬅ 🎤 例题3</a><a href="index.html">🏠 目录</a><a href="ex5.html">🎫 例题5 ➡</a></nav>
+<div class="pglinks"><a href="ex3.html">⬅ 🎤 例题3</a><a href="index.html">🏠 目录</a><a href="ex5.html">🎫 例题5 ➡</a></div>
 <script>window.PAGE = {"bars": [{"name": "丁 = 1 份", "segs": [{"w": 30, "label": "丁", "cls": "c-teal", "from": 1}], "from": 0}, {"name": "丙 = 2 份", "segs": [{"w": 60, "label": "2份", "cls": "c-green", "from": 1}], "from": 0}, {"name": "乙 = 9 份 ＋ 4", "segs": [{"w": 180, "label": "9份", "cls": "c-purple", "from": 2}, {"w": 16, "label": "＋4", "cls": "c-dash", "from": 2}], "from": 0}, {"name": "甲 = 18 份 ＋ 8", "segs": [{"w": 360, "label": "18份", "cls": "c-orange", "from": 3}, {"w": 32, "label": "＋8", "cls": "c-dash", "from": 3}], "from": 0}], "steps": [{"eq": ["四箱一共 <b>132</b> 个", "甲 = 乙×2", "乙 = (丙＋丁)×3 ＋ 4", "丙 = 丁×2"]}, {"eq": ["从最小的「丁」出发，设丁 = 1 份", "丙 = 丁×2 = 2 份", "丙＋丁 = 3 份"]}, {"eq": ["乙 = 3份 × 3 ＋ 4 = <b>9 份 ＋ 4</b>"], "note": "乙比「丙丁两箱和」的 3 倍多 4"}, {"eq": ["甲 = 乙 × 2 = <b>18 份 ＋ 8</b>"]}, {"eq": ["四箱合计：18份 ＋ 9份 ＋ 2份 ＋ 1份 ＋ (8＋4)", "30 份 ＋ 12 = 132 → 30 份 = 120", "1 份 = <b>4</b> 个"]}, {"eq": ["丁 = 4，丙 = 8", "乙 = 9×4 ＋ 4 = 40，甲 = 40×2 = 80"]}, {"eq": ["验证：80＋40＋8＋4 = 132 ✓", "乙 = (8＋4)×3＋4 = 40 ✓", "甲 = 40×2 = 80 ✓"]}], "answer": "丁箱有 4 个苹果。"};</script>
 <script src="../../../assets/app.js"></script>
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('../../../sw.js');
@@ -43,6 +52,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();

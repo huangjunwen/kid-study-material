@@ -12,11 +12,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<div class="crumbbox"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="cur">🧩 第二讲 · 复杂和差倍</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>🍬 例题 6 · 分糖</h1>
 <div class="problem card">小明、小红、小玲共有 <b>73</b> 块糖。如果小玲吃掉 <b>3</b> 块，那么小红与小玲的糖就一样多；如果小红给小明 <b>2</b> 块糖，那么小明的糖就是小红的 <b>2 倍</b>。问小红有多少块糖？</div>
 <div class="stagewrap">
-<div class="sidebtn l"><button id="prev">◀ 上一步</button></div>
 <div class="card stage">
   <div class="groups" id="groups"></div>
   <div class="stepbadge" id="stepbadge"></div>
@@ -24,16 +23,26 @@
   <div class="equation" id="eq"></div>
   <div class="answer" id="ans"></div>
   <div class="controls">
+    <button id="prev"><span class="btx">上一步</span><span class="bic">◀</span></button>
     <div class="dots" id="dots"></div>
+    <button id="next"><span class="btx">下一步</span><span class="bic">▶</span></button>
   </div>
 </div>
-<div class="sidebtn r"><button id="next">下一步 ▶</button></div>
 </div>
 <details class="summary card"><summary>💡 思路总结</summary><div>先把两个「如果」翻译成算式：① 玲−3 = 红 → <b>玲 = 红＋3</b>；② 红−2 后 明＋2 = 2×(红−2) → <b>明 = 红×2−6</b>。再代入总数：(红×2−6)＋红＋(红＋3) = 4红−3 = 73 → 红 = <b>19</b>。</div></details>
-<nav class="pagenav"><a href="ex5.html">⬅ 🎫 例题5</a><a href="index.html">🏠 目录</a><a href="practice.html">✏️ 练习 ➡</a></nav>
+<div class="pglinks"><a href="ex5.html">⬅ 🎫 例题5</a><a href="index.html">🏠 目录</a><a href="practice.html">✏️ 练习 ➡</a></div>
 <script>window.PAGE = {"bars": [{"name": "给 2 块后：明＋2 是 红−2 的 2 倍", "segs": [{"w": 102, "label": "红−2", "cls": "c-pink", "from": 2, "to": 2}, {"w": 204, "label": "明＋2", "cls": "c-blue", "from": 2, "to": 2}], "from": 0}, {"name": "小红", "segs": [{"w": 114, "label": "红 = ?", "cls": "c-pink", "from": 3, "to": 4}], "from": 0}, {"name": "小明", "segs": [{"w": 192, "label": "明 = ?", "cls": "c-blue", "from": 3, "to": 4}], "from": 0}, {"name": "小玲", "segs": [{"w": 132, "label": "玲 = ?", "cls": "c-green", "from": 3, "to": 4}], "from": 0}], "steps": [{"eq": ["三人共有 <b>73</b> 块糖", "线索①：小玲吃掉 3 块 → 和小红一样多", "线索②：小红给小明 2 块 → 小明是小红的 2 倍"]}, {"eq": ["线索①：玲 − 3 = 红", "→ <b>玲 = 红 ＋ 3</b>"]}, {"eq": ["线索②：给完后 红−2、明＋2", "明＋2 = (红−2) × 2", "→ <b>明 = 红×2 − 6</b>"], "note": "给来给去总数不变，但每个人变了！"}, {"eq": ["合计：(红×2−6) ＋ 红 ＋ (红＋3) = 73", "4 × 红 − 3 = 73 → 4 × 红 = 76", "红 = <b>19</b> 块"]}, {"eq": ["明 = 19×2 − 6 = 32 块", "玲 = 19 ＋ 3 = 22 块"]}, {"eq": ["验证：19＋32＋22 = 73 ✓", "玲 − 3 = 19 = 红 ✓", "红−2 = 17，明＋2 = 34 = 17×2 ✓"]}], "answer": "小红有 19 块糖。"};</script>
 <script src="../../../assets/app.js"></script>
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('../../../sw.js');
@@ -43,6 +52,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();

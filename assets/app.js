@@ -61,7 +61,9 @@
     }
     document.getElementById('prev').disabled = S === 0;
     document.getElementById('next').disabled = S === N - 1;
-    document.getElementById('next').textContent = S === N - 1 ? '完成 ✓' : '下一步 ▶';
+    document.getElementById('next').innerHTML = S === N - 1
+      ? '<span class="btx">完成</span><span class="bic">✓</span>'
+      : '<span class="btx">下一步</span><span class="bic">▶</span>';
   }
   document.getElementById('next').onclick = function(){ if (S < N - 1) { S++; render(); } };
   document.getElementById('prev').onclick = function(){ if (S > 0) { S--; render(); } };

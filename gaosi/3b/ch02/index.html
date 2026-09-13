@@ -12,14 +12,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-<nav class="topnav"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="lesson">第二讲 · 复杂和差倍</span></nav>
+<div class="crumbbox"><a href="../../index.html">📚 高斯数学</a><span class="sep">›</span><a href="../index.html">📗 三年级下</a><span class="sep">›</span><span class="cur">🧩 第二讲</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>🧩 第二讲 · 复杂和差倍</h1>
 <div class="subtitle">点卡片开始学习：先看讲解，再逐题演示；练习和作业先自己想，再看提示</div>
 <div class="grid">
 <a class="tile" href="lesson.html"><div class="em">🧠</div><div class="t">讲解 · 复杂和差倍</div><div class="d">两个新本领：打包 & 线段图（带图例动画）</div></a><a class="tile" href="ex1.html"><div class="em">📚</div><div class="t">例题1 · 小华的书</div><div class="d">打包 → 和倍 → 代入换元（38 本）</div></a><a class="tile" href="ex2.html"><div class="em">👴</div><div class="t">例题2 · 四人的年龄</div><div class="d">打包 → 和差问题（32 岁）</div></a><a class="tile" href="ex3.html"><div class="em">🎤</div><div class="t">例题3 · 好声音报名</div><div class="d">不能打包 → 线段图找 1 份</div></a><a class="tile" href="ex4.html"><div class="em">🍎</div><div class="t">例题4 · 四箱苹果</div><div class="d">一环扣一环层层换算（4 个）</div></a><a class="tile" href="ex5.html"><div class="em">🎫</div><div class="t">例题5 · 积分卡</div><div class="d">互为倍数 → 代入消元（35 分）</div></a><a class="tile" href="ex6.html"><div class="em">🍬</div><div class="t">例题6 · 分糖</div><div class="d">先由「如果」还原关系（19 块）</div></a><a class="tile" href="practice.html"><div class="em">✏️</div><div class="t">练一练（4 题）</div><div class="d">每题两步提示 + 答案</div></a><a class="tile" href="homework.html"><div class="em">🏠</div><div class="t">作业（5 题）</div><div class="d">先自己做，再点提示对思路</div></a>
 </div>
-<nav class="pagenav"><a href="../index.html">📗 返回三年级下</a></nav>
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('../../../sw.js');
@@ -29,6 +37,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();

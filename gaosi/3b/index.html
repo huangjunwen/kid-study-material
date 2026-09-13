@@ -12,13 +12,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-<nav class="topnav"><a href="../../index.html">🏠 首页</a><span class="sep">›</span><a href="../index.html">🎓 高斯数学</a><span class="sep">›</span><span class="lesson">三年级（下）</span></nav>
+<div class="crumbbox"><a href="../../index.html">🏠 首页</a><span class="sep">›</span><a href="../index.html">🎓 高斯数学</a><span class="sep">›</span><span class="cur">📗 三年级（下）</span></div><a class="upd" data-upd="1" title="清理缓存并检查更新">⟳ 更新</a>
 <h1>📗 三年级（下）</h1>
 <div class="subtitle">选一讲开始学习</div>
 <div class="grid">
 <a class="tile" href="ch02/index.html"><div class="em">🧩</div><div class="t">第 2 讲 · 复杂和差倍</div><div class="d">打包 & 线段图 · 6 道例题 + 练习 + 作业</div></a><a class="tile" href="#"><div class="em">⏳</div><div class="t">第 1 讲</div><div class="d">待制作</div></a>
 </div>
 <script>
+window.forceUpdate = async function(){
+  try{
+    var ks = await caches.keys();
+    await Promise.all(ks.map(function(k){ return caches.delete(k); }));
+    var reg = await navigator.serviceWorker.getRegistration();
+    if (reg) await reg.update();
+  }catch(e){}
+  location.reload();
+};
 if ('serviceWorker' in navigator) {
   var __hadCtrl = !!navigator.serviceWorker.controller, __refreshing = false;
   navigator.serviceWorker.register('../../sw.js');
@@ -28,6 +37,8 @@ if ('serviceWorker' in navigator) {
   });
   var __reg = null;
   navigator.serviceWorker.ready.then(function(r){ __reg = r; });
+  var __u = document.querySelector('[data-upd]');
+  if (__u) __u.addEventListener('click', function(){ window.forceUpdate(); });
   setInterval(function(){ if (__reg) __reg.update(); }, 30 * 60 * 1000);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && __reg) __reg.update();
